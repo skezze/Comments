@@ -1,4 +1,4 @@
-﻿using Comments.Domain.Models;
+﻿using Comments.Domain.Entities;
 using System;
 using System.Collections;
 using System.Collections.Generic;
