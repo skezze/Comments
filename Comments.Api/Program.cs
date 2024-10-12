@@ -1,3 +1,4 @@
+using Comments.Application.Features;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -5,8 +6,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddMemoryCache();
+builder.Services.AddSingleton<CommentQueue>();
 
-builder.Services.AddDbContext<CommentContext>(options=>options.UseNpgsql(
+builder.Services.AddDbContext<CommentContext>(options=>options.UseSqlServer(
     builder.Configuration.GetConnectionString("DefaultConnection")));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -22,6 +25,9 @@ app.UseSwaggerUI();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseWebSockets();
+app.UseMiddleware<WebSocketHandler>();
 
 app.MapControllers();
 

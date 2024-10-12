@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.github\workflows\pipeline.yaml = .github\workflows\pipeline.yaml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Comments.Tests", "Comments.Tests\Comments.Tests.csproj", "{665C3003-C445-4169-8650-93B59C33BF51}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{DC686034-22C7-41A2-8214-F1BF10838EE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC686034-22C7-41A2-8214-F1BF10838EE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC686034-22C7-41A2-8214-F1BF10838EE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{665C3003-C445-4169-8650-93B59C33BF51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{665C3003-C445-4169-8650-93B59C33BF51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{665C3003-C445-4169-8650-93B59C33BF51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{665C3003-C445-4169-8650-93B59C33BF51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
