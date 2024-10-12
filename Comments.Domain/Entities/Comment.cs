@@ -1,4 +1,4 @@
-﻿namespace Comments.Domain.Models
+﻿namespace Comments.Domain.Entities
 {
     public class Comment
     {

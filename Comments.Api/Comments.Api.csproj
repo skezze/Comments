@@ -19,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Comments.Application\Comments.Application.csproj" />
     <ProjectReference Include="..\Comments.Data\Comments.Data.csproj" />
+    <ProjectReference Include="..\Comments.Domain\Comments.Domain.csproj" />
   </ItemGroup>
 
 </Project>

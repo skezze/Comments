@@ -1,4 +1,6 @@
 using Comments.Application.Features;
+using Comments.Application.Repositories;
+using Comments.Application.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddMemoryCache();
 builder.Services.AddSingleton<CommentQueue>();
+builder.Services.AddScoped<ICommentService, CommentService>();
+builder.Services.AddScoped<ICommentRepository, CommentsRepository>();
 
 builder.Services.AddDbContext<CommentContext>(options=>options.UseSqlServer(
     builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -16,6 +20,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+using var scope = app.Services.CreateScope();
+await using var dbContext = scope.ServiceProvider.GetRequiredService<CommentContext>();
+await dbContext.Database.MigrateAsync(); // Apply pending migrations to the database
 
 // Configure the HTTP request pipeline.
 

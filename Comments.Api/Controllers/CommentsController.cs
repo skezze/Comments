@@ -1,5 +1,5 @@
 ﻿using Comments.Application.Features;
-using Comments.Domain.Models;
+using Comments.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
@@ -21,14 +21,14 @@ public class CommentsController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IEnumerable<Comment>> Get()
+    public async Task<IActionResult> Get()
     {
         if (!_cache.TryGetValue("commentsCache", out List<Comment> comments))
         {
             comments = await _context.Comments.OrderByDescending(c => c.DateAdded).ToListAsync();
-            _cache.Set("commentsCache", comments, TimeSpan.FromMinutes(5)); // Кэш на 5 минут
+            _cache.Set("commentsCache", comments, TimeSpan.FromMinutes(5));
         }
-        return comments;
+        return Ok(comments);
     }
 
     [HttpPost]

@@ -1,4 +1,4 @@
-﻿using Comments.Domain.Models;
+﻿using Comments.Domain.Entities;
 using System.Collections.Concurrent;
 
 namespace Comments.Application.Features
