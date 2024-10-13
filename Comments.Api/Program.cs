@@ -8,6 +8,18 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader()
+              .AllowCredentials();
+    });
+});
+
 builder.Services.AddMemoryCache();
 builder.Services.AddSingleton<CommentQueue>();
 builder.Services.AddScoped<ICommentService, CommentService>();
@@ -28,6 +40,9 @@ await using var dbContext = scope.ServiceProvider.GetRequiredService<CommentCont
 await dbContext.Database.MigrateAsync(); // Apply pending migrations to the database
 
 // Configure the HTTP request pipeline.
+
+app.UseCors("AllowAll");
+
 //ws use http connection port
 app.UseWebSockets();
 app.UseMiddleware<WebSocketHandler>();
