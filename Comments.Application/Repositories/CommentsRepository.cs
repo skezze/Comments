@@ -1,17 +1,39 @@
-﻿using System.Collections;
+﻿using Comments.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Comments.Application.Repositories
 {
     public class CommentsRepository : ICommentRepository
     {
-        public bool AddComment()
+        private readonly CommentContext commentContext;
+
+        public CommentsRepository(CommentContext commentContext)
         {
-            throw new NotImplementedException();
+            this.commentContext = commentContext;
+        }
+        public async Task<Comment> AddComment(Comment comment)
+        {
+            commentContext.Comments.Add(comment);
+            await commentContext.SaveChangesAsync();
+
+            return comment;
         }
 
-        public IEnumerable[] GetComments()
+        public async Task<Comment> GetCommentById(int id)
         {
-            throw new NotImplementedException();
+            return await commentContext.Comments
+                .Include(x=>x.User)
+                .FirstOrDefaultAsync(x=>x.Id == id);
+        }
+
+        public async Task<List<Comment>> GetComments()
+        {
+            return await commentContext.Comments.ToListAsync();
+        }
+
+        public async Task<List<Comment>> GetCommentsDescended()
+        {
+            return await commentContext.Comments.OrderByDescending(x=>x.DateAdded).ToListAsync();
         }
     }
 }

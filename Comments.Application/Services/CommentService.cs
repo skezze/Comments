@@ -1,17 +1,45 @@
-﻿using Comments.Domain.Entities;
+﻿using Comments.Application.Repositories;
+using Comments.Domain.DTOs;
+using Comments.Domain.Entities;
 
 namespace Comments.Application.Services
 {
     public class CommentService : ICommentService
     {
-        public bool AddComment()
+        private readonly ICommentRepository commentRepository;
+        private readonly IUserService userService;
+
+        public CommentService(ICommentRepository commentRepository, IUserService userService)
         {
-            throw new NotImplementedException();
+            this.commentRepository = commentRepository;
+            this.userService = userService;
+        }
+        public async Task<Comment> AddComment(CommentDto commentDto)
+        {
+            UserDto userDto = new UserDto() 
+            {
+                Email = commentDto.UserDto.Email,
+                UserName = commentDto.UserDto.UserName
+            };
+
+            User user = await userService.GetUser(userDto);
+            if (user == null) 
+            {
+                user = await userService.AddUser(userDto);
+            }
+
+            Comment comment = new Comment()
+            {
+                Text = commentDto.Text,
+                User = user
+            };
+
+            return await commentRepository.AddComment(comment);
         }
 
-        public Comment[] GetCommentsDescended()
+        public async Task<List<Comment>> GetCommentsDescended()
         {
-            throw new NotImplementedException();
+            return await commentRepository.GetCommentsDescended();
         }
     }
 }

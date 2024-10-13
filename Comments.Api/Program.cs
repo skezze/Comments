@@ -12,6 +12,8 @@ builder.Services.AddMemoryCache();
 builder.Services.AddSingleton<CommentQueue>();
 builder.Services.AddScoped<ICommentService, CommentService>();
 builder.Services.AddScoped<ICommentRepository, CommentsRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 builder.Services.AddDbContext<CommentContext>(options=>options.UseSqlServer(
     builder.Configuration.GetConnectionString("DefaultConnection")));
