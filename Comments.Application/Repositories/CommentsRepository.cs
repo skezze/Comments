@@ -22,7 +22,6 @@ namespace Comments.Application.Repositories
         public async Task<Comment> GetCommentById(int id)
         {
             return await commentContext.Comments
-                .Include(x=>x.User)
                 .FirstOrDefaultAsync(x=>x.Id == id);
         }
 

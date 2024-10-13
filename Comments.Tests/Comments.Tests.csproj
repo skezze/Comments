@@ -11,13 +11,22 @@
 
   <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="6.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.10" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="3.1.1" />
     <PackageReference Include="MSTest.TestFramework" Version="3.1.1" />
+    <PackageReference Include="NSubstitute" Version="5.1.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Comments.Api\Comments.Api.csproj" />
+    <ProjectReference Include="..\Comments.Application\Comments.Application.csproj" />
+    <ProjectReference Include="..\Comments.Data\Comments.Data.csproj" />
+    <ProjectReference Include="..\Comments.Domain\Comments.Domain.csproj" />
   </ItemGroup>
 
 </Project>
