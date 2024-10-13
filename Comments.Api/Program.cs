@@ -28,6 +28,9 @@ await using var dbContext = scope.ServiceProvider.GetRequiredService<CommentCont
 await dbContext.Database.MigrateAsync(); // Apply pending migrations to the database
 
 // Configure the HTTP request pipeline.
+//ws use http connection port
+app.UseWebSockets();
+app.UseMiddleware<WebSocketHandler>();
 
 app.UseSwagger();
 app.UseSwaggerUI();
@@ -35,9 +38,6 @@ app.UseSwaggerUI();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
-
-app.UseWebSockets();
-app.UseMiddleware<WebSocketHandler>();
 
 app.MapControllers();
 
