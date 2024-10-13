@@ -15,9 +15,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		Dockerfile = Dockerfile
 		.github\workflows\pipeline.yaml = .github\workflows\pipeline.yaml
+		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Comments.Tests", "Comments.Tests\Comments.Tests.csproj", "{665C3003-C445-4169-8650-93B59C33BF51}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Comments.Tests", "Comments.Tests\Comments.Tests.csproj", "{665C3003-C445-4169-8650-93B59C33BF51}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
