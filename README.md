@@ -32,6 +32,7 @@ docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=YourStrong!Passw0rd" -p 1433
 ### 2. Клонируйте репозиторий
 
 git clone https://github.com/skezze/Comments
+
 cd Comments
 
 ### 3. Восстановите зависимости:
@@ -40,4 +41,5 @@ dotnet restore
 
 ### 4. Запустите приложение
 cd Comments.Api
+
 dotnet run
