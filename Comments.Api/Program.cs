@@ -20,6 +20,7 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddMemoryCache();
+builder.Services.AddTransient<WebSocketHandler>();
 builder.Services.AddSingleton<CommentQueue>();
 builder.Services.AddScoped<ICommentService, CommentService>();
 builder.Services.AddScoped<ICommentRepository, CommentsRepository>();
